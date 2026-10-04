@@ -37,6 +37,11 @@ body{height:100dvh;overflow:hidden}
 @keyframes pl{50%{opacity:.35}}
 .sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,240,190,.4) 50%,transparent 65%);background-size:250% 100%;mix-blend-mode:soft-light;z-index:2;transition:opacity .5s}
 .open .sheen{opacity:0}
+.heart{position:absolute;left:50%;top:62.5%;width:27%;margin:-13.5% 0 0 -13.5%;aspect-ratio:1.1;z-index:4;pointer-events:none;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45));animation:hb 1.7s ease-in-out infinite;transition:opacity .5s,transform .5s}
+.heart svg{width:100%;height:100%;display:block}
+.heart span{position:absolute;left:0;right:0;top:35%;text-align:center;font:italic 700 clamp(10.5px,3.2vw,13px)/1.15 Georgia,serif;color:#fff3cf;text-shadow:0 1px 3px rgba(80,0,20,.7);letter-spacing:.02em}
+@keyframes hb{0%,100%{transform:scale(1)}14%{transform:scale(1.09)}28%{transform:scale(1)}42%{transform:scale(1.06)}}
+.open .heart{opacity:0;animation:none;transform:scale(.6)}
 </style></head><body>
 <div class="amb"></div><div class="vig"></div><canvas id="fx"></canvas>
 <audio id="bgm" src="madeh.mp3" loop preload="none"></audio><button id="mute" style="display:none" aria-label="Music">&#9835;</button>
@@ -44,7 +49,7 @@ body{height:100dvh;overflow:hidden}
  <div class="in"><img src="inner.jpg" alt="Wedding details - Sarah weds Hatim"></div>
  <div class="door l"><img src="front.jpg" alt="Wedding Invitation - Sarah and Hatim"></div>
  <div class="door r"><img src="front.jpg" alt=""></div>
- <div class="seam"></div><div class="sheen" id="sheen"></div>
+ <div class="heart"><svg viewBox="0 0 110 100"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8547a"/><stop offset="1" stop-color="#a50f3a"/></linearGradient></defs><path d="M55 94C20 68 4 48 4 29C4 14 15 5 29 5c10 0 21 6 26 16C60 11 71 5 81 5c14 0 25 9 25 24 0 19-16 39-51 65z" fill="url(#hg)" stroke="#f1d98a" stroke-width="3"/></svg><span>Tap to open</span></div><div class="seam"></div><div class="sheen" id="sheen"></div>
 </div>
 <div class="cap" id="cap"><b>Awaiting to welcome you</b><span><i>Saturday, 30 January 2027,</i> <i>Masakin-E-Saifiyah, Bijalpur, Indore</i></span></div>
 <script>/* gold dust + bokeh, depth layers; px,py = parallax offset -1..1 set by page */
