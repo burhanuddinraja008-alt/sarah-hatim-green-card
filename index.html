@@ -53,11 +53,21 @@ var FX={px:0,py:0,boost:0};
 var c=document.getElementById('fx'),x=c.getContext('2d'),W,H,D=Math.min(devicePixelRatio||1,2),P=[];
 function rs(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}rs();addEventListener('resize',rs);
 for(var i=0;i<46;i++){var z=Math.random();P.push({x:Math.random(),y:Math.random(),z:z,r:(z<.25?9+Math.random()*14:1+Math.random()*2.2),v:.00008+z*.00028,p:Math.random()*6,bk:z<.25})}
+
+var PT=[],cols=['#b3123f','#d62f5a','#e8547a','#f27a98','#8f0d33'];
+for(var j=0;j<16;j++)PT.push({x:Math.random(),y:Math.random()*1.2-.2,s:9+Math.random()*10,v:.00035+Math.random()*.0004,sw:Math.random()*6,sa:.03+Math.random()*.05,r:Math.random()*6.3,rv:(Math.random()-.5)*.03,fl:Math.random()*6,c:cols[j%5]});
+function petal(q,t){q.y+=q.v*(1+FX.boost*3);if(q.y>1.08){q.y=-.08;q.x=Math.random()}
+var X=(q.x+Math.sin(t/1700+q.sw)*q.sa)*W+FX.px*30,Y=q.y*H,s=q.s,fl=Math.cos(t/700+q.fl);
+x.save();x.translate(X,Y);x.rotate(q.r+t*q.rv/16);x.scale(1,.35+.65*Math.abs(fl));
+var g=x.createLinearGradient(0,-s,0,s);g.addColorStop(0,q.c);g.addColorStop(1,'rgba(255,170,190,.9)');
+x.fillStyle=g;x.globalAlpha=.92;x.beginPath();x.moveTo(0,-s);x.bezierCurveTo(s*.95,-s*.55,s*.8,s*.7,0,s);x.bezierCurveTo(-s*.8,s*.7,-s*.95,-s*.55,0,-s);x.fill();
+x.globalAlpha=.25;x.strokeStyle='#fff';x.lineWidth=.8;x.beginPath();x.moveTo(0,-s*.7);x.lineTo(0,s*.7);x.stroke();x.restore()}
 function f(t){x.clearRect(0,0,W,H);x.globalCompositeOperation='lighter';
 for(var i=0;i<P.length;i++){var q=P[i];q.y-=q.v*(1+FX.boost*6);if(q.y<-.05){q.y=1.05;q.x=Math.random()}
 var X=(q.x+Math.sin(t/3000+q.p)*.02)*W+FX.px*q.z*40,Y=q.y*H+FX.py*q.z*40,a=(.25+.5*Math.abs(Math.sin(t/900+q.p)));
 if(q.bk){var g=x.createRadialGradient(X,Y,0,X,Y,q.r);g.addColorStop(0,'rgba(241,217,138,'+a*.22+')');g.addColorStop(1,'rgba(241,217,138,0)');x.fillStyle=g;x.beginPath();x.arc(X,Y,q.r,0,6.3);x.fill()}
 else{x.fillStyle='rgba(255,226,140,'+a*.8+')';x.beginPath();x.arc(X,Y,q.r,0,6.3);x.fill()}}
+x.globalCompositeOperation='source-over';for(var k=0;k<PT.length;k++)petal(PT[k],t);
 requestAnimationFrame(f)}requestAnimationFrame(f);
 })();
 var AUD={a:document.getElementById('bgm'),m:document.getElementById('mute'),on:false,
