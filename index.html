@@ -1,117 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Sarah &amp; Hatim - Wedding Invitation</title>
-<meta name="theme-color" content="#1f3a2a">
-<meta property="og:title" content="Sarah &amp; Hatim - Wedding Invitation">
-<meta property="og:description" content="Customized Invitation Card - For our valuable guest">
-<meta property="og:image" content="https://burhanuddinraja008-alt.github.io/sarah-hatim-green-card/og.jpg">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="front.jpg">
-<style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;min-height:100vh;background:#16291e}
-body{font-family:Georgia,"Times New Roman",serif;color:#f3e7c4;overflow-x:hidden;
-background:radial-gradient(ellipse at 50% 0%,#2c5a3e 0,#1c3a29 45%,#112018 100%) fixed}
-#sparkles{position:fixed;inset:0;pointer-events:none;z-index:0}
-.stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:28px 14px 40px}
-/* envelope */
-#intro{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;
-background:radial-gradient(ellipse at 50% 20%,#2f6244 0,#1c3a29 55%,#0f1d15 100%);transition:opacity .8s ease .5s,visibility 0s 1.3s}
-#intro.gone{opacity:0;visibility:hidden;pointer-events:none}
-.env{position:relative;width:min(84vw,360px);aspect-ratio:1.45;cursor:pointer;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
-.env .back{position:absolute;inset:0;background:linear-gradient(160deg,#e9dcb0,#d6c48c);border-radius:6px;border:2px solid #c9a24b}
-.env .paper{position:absolute;left:7%;right:7%;top:8%;height:80%;background:url(front.jpg) center top/cover #f6f0dc;border-radius:3px;opacity:0;transition:transform .9s cubic-bezier(.3,.7,.2,1) .35s,opacity .1s .3s}
-.env.open .paper{opacity:1}
-.env .pocket{position:absolute;inset:0;border-radius:6px;overflow:hidden;
-background:linear-gradient(to top right,#cdb97a 49.6%,transparent 50%) left/51% 100% no-repeat,linear-gradient(to top left,#d9c88f 49.6%,transparent 50%) right/51% 100% no-repeat,linear-gradient(to top,#e3d49d 0,#e3d49d 52%,transparent 52.3%)}
-.env .flap{position:absolute;left:0;right:0;top:0;height:58%;transform-origin:top;transition:transform .7s ease;z-index:3}
-.env .flap i{position:absolute;inset:0;background:linear-gradient(#3b7350,#2a5a3c);clip-path:polygon(0 0,100% 0,50% 100%);border-top:0}
-.env .flap:after{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);box-shadow:inset 0 0 0 2px #c9a24b}
-.seal{position:absolute;left:50%;top:50%;width:21%;aspect-ratio:1;margin:-10.5% 0 0 -10.5%;z-index:4;border-radius:50%;
-background:radial-gradient(circle at 35% 30%,#f1d98a,#c9a24b 55%,#9a7628);display:flex;align-items:center;justify-content:center;color:#1f3a2a;font-size:clamp(14px,5vw,22px);font-style:italic;font-weight:bold;
-box-shadow:0 3px 8px rgba(0,0,0,.5);animation:pulse 1.8s infinite;transition:opacity .3s}
-@keyframes pulse{50%{transform:scale(1.08)}}
-.env.open .seal{opacity:0;animation:none}
-.env.open .flap{transform:rotateX(180deg);z-index:1}
-.env.open .paper{transform:translateY(-62%) scale(1.04)}
-.hint{margin-top:34px;font-size:14px;letter-spacing:.25em;text-transform:uppercase;color:#e7cf8b;opacity:.9}
-.names{font-size:clamp(26px,8vw,36px);font-style:italic;margin:0 0 26px;color:#f1d98a;text-shadow:0 2px 10px rgba(0,0,0,.5)}
-/* card flip */
-.cardwrap{width:min(92vw,470px);perspective:1400px;cursor:pointer;opacity:0;transform:translateY(24px);transition:opacity 1s,transform 1s}
-body.revealed .cardwrap{opacity:1;transform:none}
-.flipper{position:relative;width:100%;aspect-ratio:875/1313;transition:transform 1s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
-.cardwrap.flipped .flipper{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.55),0 0 0 2px rgba(201,162,75,.6)}
-.face img{width:100%;height:100%;display:block}
-.face.b{transform:rotateY(180deg)}
-.tap{margin:16px 0 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#e7cf8b;text-align:center;opacity:0;transition:opacity 1s .8s}
-body.revealed .tap{opacity:.85}
-/* details */
-.more{position:relative;z-index:1;width:min(92vw,470px);margin:0 auto;padding:26px 0 60px;text-align:center;opacity:0;transition:opacity 1s 1.2s}
-body.revealed .more{opacity:1}
-.count{display:flex;gap:10px;justify-content:center;margin:6px 0 8px}
-.count div{flex:1;max-width:96px;padding:12px 4px;border:1px solid #c9a24b;border-radius:10px;background:rgba(10,24,16,.45)}
-.count b{display:block;font-size:28px;color:#f1d98a;font-weight:normal;font-variant-numeric:tabular-nums}
-.count span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#cdbf92}
-.when{margin:10px 0 26px;font-size:15px;color:#e8dcb4;font-style:italic}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:10px 8px;border-radius:12px;border:1.5px solid #c9a24b;background:linear-gradient(#2d5a3f,#234a33);color:#f7ecc7;font:inherit;font-size:15px;text-decoration:none;cursor:pointer}
-.btn:active{transform:scale(.97)}
-.btn.wide{grid-column:1/-1;background:linear-gradient(#e0c06e,#c9a24b);color:#1d3526;font-weight:bold}
-.foot{margin-top:30px;font-size:13px;color:#a99f7b;letter-spacing:.08em}
-@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}}
-#mute{position:fixed;bottom:14px;right:14px;z-index:30;width:38px;height:38px;border-radius:50%;border:1px solid #c9a24b;background:rgba(15,32,22,.6);color:#f1d98a;font-size:18px;line-height:1;padding:0;cursor:pointer}
-#mute.off{opacity:.55;text-decoration:line-through}
+<title>Sarah &amp; Hatim - Wedding Invitation</title><meta name="theme-color" content="#0e1f16">
+<meta property="og:title" content="Sarah &amp; Hatim - Wedding Invitation"><meta property="og:description" content="Customized Invitation Card - For our valuable guest"><meta property="og:image" content="https://burhanuddinraja008-alt.github.io/sarah-hatim-green-card/og.jpg">
+<link rel="preload" as="image" href="front.jpg"><style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0}
+html,body{background:#0e1f16;overscroll-behavior:none}
+body{font-family:Georgia,serif;color:#f1d98a;-webkit-user-select:none;user-select:none}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+#mute{position:fixed;bottom:14px;right:14px;z-index:50;width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,162,75,.8);background:rgba(15,32,22,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#f1d98a;font-size:18px;padding:0;cursor:pointer}
+#mute.off{opacity:.5;text-decoration:line-through}
+.amb{position:fixed;inset:-10%;z-index:0;background:linear-gradient(rgba(22,74,44,.72),rgba(8,28,17,.82)),url(front.jpg) center/cover;filter:blur(40px) saturate(1.4);transform:scale(1.2)}
+.vig{position:fixed;inset:0;z-index:4;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(5,12,8,.55) 100%)}
+.cap{position:fixed;left:0;right:0;bottom:0;z-index:30;text-align:center;padding:0 54px 16px;pointer-events:none;opacity:0;transition:opacity 1.2s ease;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.cap.show{opacity:1}
+.cap b{display:block;font-weight:normal;font-style:italic;font-size:clamp(19px,5.6vw,24px);color:#f1d98a;margin-bottom:6px}
+.cap span{display:block;font-size:clamp(12.5px,3.6vw,14.5px);line-height:1.4;color:#eadfb8;letter-spacing:.03em}
+:root{--ch:calc(100dvh - 110px);--cw:min(92vw,calc((100dvh - 110px) * .6664))}
+.cap span i{font-style:normal;white-space:nowrap;display:inline-block}
 </style>
-</head>
-<body>
-<canvas id="sparkles"></canvas>
-<audio id="bgm" src="madeh.mp3" loop preload="none"></audio>
-<button id="mute" aria-label="Mute music" style="display:none">&#9835;</button>
-
-<div id="intro">
-  <div class="env" id="env" role="button" aria-label="Open invitation">
-    <div class="back"></div>
-    <div class="paper"></div>
-    <div class="pocket"></div>
-    <div class="flap"><i></i></div>
-    <div class="seal">S&amp;H</div>
-  </div>
-  <div class="hint">Tap to open</div>
+<style>
+body{height:100dvh;overflow:hidden}
+.stage{position:fixed;left:50%;top:calc((100dvh - 110px)/2 + 14px);width:var(--cw);aspect-ratio:875/1313;margin-left:calc(var(--cw)/-2);margin-top:calc(var(--cw)*1.5/-2);z-index:2;perspective:1500px;cursor:pointer;animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-6px)}}
+.in{position:absolute;inset:0;border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1.5px rgba(201,162,75,.65);transform:scale(.94);transition:transform 2.4s cubic-bezier(.2,.7,.2,1) .2s}
+.in img{width:100%;height:100%;display:block}
+.open .in{transform:scale(1)}
+.glow{position:absolute;inset:-18%;background:radial-gradient(ellipse at 50% 50%,rgba(255,226,140,.0),rgba(255,226,140,0) 60%);transition:background 1.6s}
+.open .glow{background:radial-gradient(ellipse at 50% 50%,rgba(255,226,140,.5),rgba(255,226,140,0) 62%)}
+.door{position:absolute;top:0;width:50%;height:100%;overflow:hidden;transition:transform 2.3s cubic-bezier(.65,0,.2,1),filter 2.3s;backface-visibility:hidden;box-shadow:0 0 0 1.5px rgba(201,162,75,.65)}
+.door img{position:absolute;top:0;height:100%;width:200%;display:block;max-width:none}
+.door.l{left:0;transform-origin:0 50%;border-radius:6px 0 0 6px}.door.l img{left:0}
+.door.r{right:0;transform-origin:100% 50%;border-radius:0 6px 6px 0}.door.r img{right:0}
+.open .door.l{transform:rotateY(-112deg);filter:brightness(.55)}
+.open .door.r{transform:rotateY(112deg);filter:brightness(.55)}
+.seam{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(transparent,#f1d98a,transparent);box-shadow:0 0 14px 3px rgba(241,217,138,.8);z-index:3;animation:pl 2s infinite;transition:opacity .6s}
+.open .seam{opacity:0;animation:none}
+@keyframes pl{50%{opacity:.35}}
+.sheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,240,190,.4) 50%,transparent 65%);background-size:250% 100%;mix-blend-mode:soft-light;z-index:2;transition:opacity .5s}
+.open .sheen{opacity:0}
+</style></head><body>
+<div class="amb"></div><div class="vig"></div><canvas id="fx"></canvas>
+<audio id="bgm" src="madeh.mp3" loop preload="none"></audio><button id="mute" style="display:none" aria-label="Music">&#9835;</button>
+<div class="stage" id="st"><div class="glow"></div>
+ <div class="in"><img src="inner.jpg" alt="Wedding details - Sarah weds Hatim"></div>
+ <div class="door l"><img src="front.jpg" alt="Wedding Invitation - Sarah and Hatim"></div>
+ <div class="door r"><img src="front.jpg" alt=""></div>
+ <div class="seam"></div><div class="sheen" id="sheen"></div>
 </div>
-
-<main class="stage">
-  <div class="cardwrap" id="card">
-    <div class="flipper">
-      <div class="face f"><img src="front.jpg" alt="Wedding Invitation - Sarah and Hatim" width="1500" height="2250"></div>
-      <div class="face b"><img src="inner.jpg" alt="Wedding details - Sarah weds Hatim" width="1500" height="2250" loading="lazy"></div>
-    </div>
-  </div>
-</main>
-
-
-<script>
+<div class="cap" id="cap"><b>Awaiting to welcome you</b><span><i>Saturday, 30 January 2027,</i> <i>Masakin-E-Saifiyah, Bijalpur, Indore</i></span></div>
+<script>/* gold dust + bokeh, depth layers; px,py = parallax offset -1..1 set by page */
+var FX={px:0,py:0,boost:0};
 (function(){
-var env=document.getElementById('env'),intro=document.getElementById('intro'),card=document.getElementById('card');
-var opened=false;
-var bgm=document.getElementById('bgm'),mb=document.getElementById('mute');
-function open(){if(opened)return;opened=true;env.classList.add('open');try{bgm.volume=.8;bgm.play().catch(function(){});}catch(e){}mb.style.display='block';
- setTimeout(function(){intro.classList.add('gone');document.body.classList.add('revealed')},1400);}
-env.addEventListener('click',open);intro.addEventListener('click',open);
-card.addEventListener('click',function(){card.classList.toggle('flipped')});
-mb.addEventListener('click',function(){var m=!bgm.muted;bgm.muted=m;mb.classList.toggle('off',m);mb.setAttribute('aria-label',m?'Unmute music':'Mute music');if(!m&&bgm.paused)bgm.play().catch(function(){})});
-// sparkles
-var c=document.getElementById('sparkles'),x=c.getContext('2d'),W,H,P=[];
-function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);
-for(var i=0;i<28;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.6,v:Math.random()*.0004+.0001,p:Math.random()*6});
-(function f(t){x.clearRect(0,0,W,H);for(var i=0;i<P.length;i++){var q=P[i];q.y-=q.v;if(q.y<0)q.y=1;
- x.globalAlpha=.25+.45*Math.abs(Math.sin(t/900+q.p));x.fillStyle='#f1d98a';x.beginPath();x.arc(q.x*W,q.y*H,q.r,0,6.3);x.fill();}
- requestAnimationFrame(f)})(0);
+var c=document.getElementById('fx'),x=c.getContext('2d'),W,H,D=Math.min(devicePixelRatio||1,2),P=[];
+function rs(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}rs();addEventListener('resize',rs);
+for(var i=0;i<46;i++){var z=Math.random();P.push({x:Math.random(),y:Math.random(),z:z,r:(z<.25?9+Math.random()*14:1+Math.random()*2.2),v:.00008+z*.00028,p:Math.random()*6,bk:z<.25})}
+function f(t){x.clearRect(0,0,W,H);x.globalCompositeOperation='lighter';
+for(var i=0;i<P.length;i++){var q=P[i];q.y-=q.v*(1+FX.boost*6);if(q.y<-.05){q.y=1.05;q.x=Math.random()}
+var X=(q.x+Math.sin(t/3000+q.p)*.02)*W+FX.px*q.z*40,Y=q.y*H+FX.py*q.z*40,a=(.25+.5*Math.abs(Math.sin(t/900+q.p)));
+if(q.bk){var g=x.createRadialGradient(X,Y,0,X,Y,q.r);g.addColorStop(0,'rgba(241,217,138,'+a*.22+')');g.addColorStop(1,'rgba(241,217,138,0)');x.fillStyle=g;x.beginPath();x.arc(X,Y,q.r,0,6.3);x.fill()}
+else{x.fillStyle='rgba(255,226,140,'+a*.8+')';x.beginPath();x.arc(X,Y,q.r,0,6.3);x.fill()}}
+requestAnimationFrame(f)}requestAnimationFrame(f);
 })();
+var AUD={a:document.getElementById('bgm'),m:document.getElementById('mute'),on:false,
+start:function(){if(this.on)return;this.on=true;try{this.a.volume=.85;this.a.play().catch(function(){})}catch(e){}this.m.style.display='block'}};
+AUD.m.addEventListener('click',function(e){e.stopPropagation();var m=!AUD.a.muted;AUD.a.muted=m;AUD.m.classList.toggle('off',m);if(!m&&AUD.a.paused)AUD.a.play().catch(function(){})});
 </script>
-</body>
-</html>
+<script>
+var st=document.getElementById('st'),cap=document.getElementById('cap'),sh=document.getElementById('sheen'),isOpen=false,busy=false;
+st.addEventListener('click',function(){AUD.start();if(busy)return;busy=true;isOpen=!isOpen;st.classList.toggle('open',isOpen);FX.boost=isOpen?1:0;
+ setTimeout(function(){FX.boost=0;busy=false},2600);
+ if(isOpen)setTimeout(function(){cap.classList.add('show')},1800);else cap.classList.remove('show')});
+var tx=0,ty=0;
+addEventListener('pointermove',function(e){tx=(e.clientX/innerWidth-.5);ty=(e.clientY/innerHeight-.5);FX.px=-tx*2;FX.py=-ty*2});
+(function f(t){sh.style.backgroundPosition=(120-((t/16)%300))+'% 0';requestAnimationFrame(f)})(0);
+</script></body></html>
