@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sarah &amp; Hatim - Wedding Invitation</title>
+<meta name="theme-color" content="#1f3a2a">
+<meta property="og:title" content="Sarah &amp; Hatim - Wedding Invitation">
+<meta property="og:description" content="Customized Invitation Card - For our valuable guest">
+<meta property="og:image" content="https://burhanuddinraja008-alt.github.io/sarah-hatim-green-card/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="front.jpg">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100vh;background:#16291e}
+body{font-family:Georgia,"Times New Roman",serif;color:#f3e7c4;overflow-x:hidden;
+background:radial-gradient(ellipse at 50% 0%,#2c5a3e 0,#1c3a29 45%,#112018 100%) fixed}
+#sparkles{position:fixed;inset:0;pointer-events:none;z-index:0}
+.stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:28px 14px 40px}
+/* envelope */
+#intro{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;
+background:radial-gradient(ellipse at 50% 20%,#2f6244 0,#1c3a29 55%,#0f1d15 100%);transition:opacity .8s ease .5s,visibility 0s 1.3s}
+#intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+.env{position:relative;width:min(84vw,360px);aspect-ratio:1.45;cursor:pointer;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+.env .back{position:absolute;inset:0;background:linear-gradient(160deg,#e9dcb0,#d6c48c);border-radius:6px;border:2px solid #c9a24b}
+.env .paper{position:absolute;left:7%;right:7%;top:8%;height:80%;background:url(front.jpg) center top/cover #f6f0dc;border-radius:3px;opacity:0;transition:transform .9s cubic-bezier(.3,.7,.2,1) .35s,opacity .1s .3s}
+.env.open .paper{opacity:1}
+.env .pocket{position:absolute;inset:0;border-radius:6px;overflow:hidden;
+background:linear-gradient(to top right,#cdb97a 49.6%,transparent 50%) left/51% 100% no-repeat,linear-gradient(to top left,#d9c88f 49.6%,transparent 50%) right/51% 100% no-repeat,linear-gradient(to top,#e3d49d 0,#e3d49d 52%,transparent 52.3%)}
+.env .flap{position:absolute;left:0;right:0;top:0;height:58%;transform-origin:top;transition:transform .7s ease;z-index:3}
+.env .flap i{position:absolute;inset:0;background:linear-gradient(#3b7350,#2a5a3c);clip-path:polygon(0 0,100% 0,50% 100%);border-top:0}
+.env .flap:after{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);box-shadow:inset 0 0 0 2px #c9a24b}
+.seal{position:absolute;left:50%;top:50%;width:21%;aspect-ratio:1;margin:-10.5% 0 0 -10.5%;z-index:4;border-radius:50%;
+background:radial-gradient(circle at 35% 30%,#f1d98a,#c9a24b 55%,#9a7628);display:flex;align-items:center;justify-content:center;color:#1f3a2a;font-size:clamp(14px,5vw,22px);font-style:italic;font-weight:bold;
+box-shadow:0 3px 8px rgba(0,0,0,.5);animation:pulse 1.8s infinite;transition:opacity .3s}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.env.open .seal{opacity:0;animation:none}
+.env.open .flap{transform:rotateX(180deg);z-index:1}
+.env.open .paper{transform:translateY(-62%) scale(1.04)}
+.hint{margin-top:34px;font-size:14px;letter-spacing:.25em;text-transform:uppercase;color:#e7cf8b;opacity:.9}
+.names{font-size:clamp(26px,8vw,36px);font-style:italic;margin:0 0 26px;color:#f1d98a;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+/* card flip */
+.cardwrap{width:min(92vw,470px);perspective:1400px;cursor:pointer;opacity:0;transform:translateY(24px);transition:opacity 1s,transform 1s}
+body.revealed .cardwrap{opacity:1;transform:none}
+.flipper{position:relative;width:100%;aspect-ratio:875/1313;transition:transform 1s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.cardwrap.flipped .flipper{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.55),0 0 0 2px rgba(201,162,75,.6)}
+.face img{width:100%;height:100%;display:block}
+.face.b{transform:rotateY(180deg)}
+.tap{margin:16px 0 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#e7cf8b;text-align:center;opacity:0;transition:opacity 1s .8s}
+body.revealed .tap{opacity:.85}
+/* details */
+.more{position:relative;z-index:1;width:min(92vw,470px);margin:0 auto;padding:26px 0 60px;text-align:center;opacity:0;transition:opacity 1s 1.2s}
+body.revealed .more{opacity:1}
+.count{display:flex;gap:10px;justify-content:center;margin:6px 0 8px}
+.count div{flex:1;max-width:96px;padding:12px 4px;border:1px solid #c9a24b;border-radius:10px;background:rgba(10,24,16,.45)}
+.count b{display:block;font-size:28px;color:#f1d98a;font-weight:normal;font-variant-numeric:tabular-nums}
+.count span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#cdbf92}
+.when{margin:10px 0 26px;font-size:15px;color:#e8dcb4;font-style:italic}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:10px 8px;border-radius:12px;border:1.5px solid #c9a24b;background:linear-gradient(#2d5a3f,#234a33);color:#f7ecc7;font:inherit;font-size:15px;text-decoration:none;cursor:pointer}
+.btn:active{transform:scale(.97)}
+.btn.wide{grid-column:1/-1;background:linear-gradient(#e0c06e,#c9a24b);color:#1d3526;font-weight:bold}
+.foot{margin-top:30px;font-size:13px;color:#a99f7b;letter-spacing:.08em}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}}
+</style>
+</head>
+<body>
+<canvas id="sparkles"></canvas>
+
+<div id="intro">
+  <div class="env" id="env" role="button" aria-label="Open invitation">
+    <div class="back"></div>
+    <div class="paper"></div>
+    <div class="pocket"></div>
+    <div class="flap"><i></i></div>
+    <div class="seal">S&amp;H</div>
+  </div>
+  <div class="hint">Tap to open</div>
+</div>
+
+<main class="stage">
+  <div class="cardwrap" id="card">
+    <div class="flipper">
+      <div class="face f"><img src="front.jpg" alt="Wedding Invitation - Sarah and Hatim" width="1500" height="2250"></div>
+      <div class="face b"><img src="inner.jpg" alt="Wedding details - Sarah weds Hatim" width="1500" height="2250" loading="lazy"></div>
+    </div>
+  </div>
+</main>
+
+
+<script>
+(function(){
+var env=document.getElementById('env'),intro=document.getElementById('intro'),card=document.getElementById('card');
+var opened=false;
+function open(){if(opened)return;opened=true;env.classList.add('open');
+ setTimeout(function(){intro.classList.add('gone');document.body.classList.add('revealed')},1400);}
+env.addEventListener('click',open);intro.addEventListener('click',open);
+card.addEventListener('click',function(){card.classList.toggle('flipped')});
+// sparkles
+var c=document.getElementById('sparkles'),x=c.getContext('2d'),W,H,P=[];
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);
+for(var i=0;i<28;i++)P.push({x:Math.random(),y:Math.random(),r:Math.random()*1.8+.6,v:Math.random()*.0004+.0001,p:Math.random()*6});
+(function f(t){x.clearRect(0,0,W,H);for(var i=0;i<P.length;i++){var q=P[i];q.y-=q.v;if(q.y<0)q.y=1;
+ x.globalAlpha=.25+.45*Math.abs(Math.sin(t/900+q.p));x.fillStyle='#f1d98a';x.beginPath();x.arc(q.x*W,q.y*H,q.r,0,6.3);x.fill();}
+ requestAnimationFrame(f)})(0);
+})();
+</script>
+</body>
+</html>
